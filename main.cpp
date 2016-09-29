@@ -32,9 +32,9 @@ void usage() {
                     "\n"
                     "Options: \n"
                     "\n" 
-                    "    -gaussian_kernel_sigma <gaussian_kernel_sigma>: Gaussian weights based on spatial distance are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. \n"
+                    "    -gaussian_kernel_sigma <gaussian_kernel_sigma>: Gaussian weights based on spatial distance are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 2. \n"
                     "\n"
-                    "    -intensity_sigma <intensity_sigma>: Gaussian weights based on intensity difference are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. \n"
+                    "    -intensity_sigma <intensity_sigma>: Gaussian weights based on intensity difference are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 5. \n"
                     "\n"
                     "\n"
            );
@@ -59,7 +59,15 @@ int main(int argc, char* argv[]) {
     static const unsigned I_width = I.get_width();
     png::image< png::rgba_pixel > J(I_width, I_height); // output image
     
-    cout << "Running bilateral filter on " << input_image_name << " (" << I_width*I_height << " pixels)." << endl << endl;
+    NEWLINE;
+    PRINT("Parameter Values");
+    cout << "    Input File Name: " << input_image_name << endl;
+    cout << "    Input Image Width: " << I_width << endl;
+    cout << "    Input Image Height: " << I_height << endl;
+    cout << "    Output File Name: " << output_image_name << endl;
+    cout << "    Spatial Sigma: " << gaussian_kernel_sigma << endl;
+    cout << "    Intensity Sigma: " << intensity_sigma << endl;
+    NEWLINE;
     
     Array<double> kernel;
     get_gaussian_kernel(gaussian_kernel_dim, gaussian_kernel_sigma, kernel);

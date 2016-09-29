@@ -19,6 +19,7 @@
 
 #define TEST(x) cout << (#x) << ": " << x << endl;
 #define PRINT(x) cout << x << endl;
+#define NEWLINE cout << endl; fflush(stdout);
 
 #define CHAR_STAR_EQUAL(a,b) !strcmp(a,b)
 
