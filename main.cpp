@@ -32,7 +32,7 @@ void usage() {
                     "\n"
                     "Options: \n"
                     "\n" 
-                    "    -gaussian_kernel_sigma <gaussian_kernel_sigma>: Gaussian weights based on spatial distance are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 2. \n"
+                    "    -gaussian_kernel_sigma <gaussian_kernel_sigma>: Gaussian weights based on spatial distance are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 5. \n"
                     "\n"
                     "    -intensity_sigma <intensity_sigma>: Gaussian weights based on intensity difference are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 50. \n"
                     "\n"
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     }
     
     /* Parameters */
-    static const double gaussian_kernel_sigma = atof(get_command_line_param_val_default_val(argc, argv, "-gaussian_kernel_sigma", "2"));
+    static const double gaussian_kernel_sigma = atof(get_command_line_param_val_default_val(argc, argv, "-gaussian_kernel_sigma", "5"));
     static const int gaussian_kernel_dim = 1+2*(int)(gaussian_kernel_sigma*1.5); // To get about a 99% confidence interval
     static const double intensity_sigma = atof(get_command_line_param_val_default_val(argc, argv, "-intensity_sigma", "50"));
     char* input_image_name = argv[1];
