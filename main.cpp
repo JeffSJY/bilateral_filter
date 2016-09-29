@@ -34,7 +34,7 @@ void usage() {
                     "\n" 
                     "    -gaussian_kernel_sigma <gaussian_kernel_sigma>: Gaussian weights based on spatial distance are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 2. \n"
                     "\n"
-                    "    -intensity_sigma <intensity_sigma>: Gaussian weights based on intensity difference are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 5. \n"
+                    "    -intensity_sigma <intensity_sigma>: Gaussian weights based on intensity difference are used to determine the impact of nearby pixels. This parameter determines the weights of nearby pixels. The default value is 50. \n"
                     "\n"
                     "\n"
            );
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
     /* Parameters */
     static const double gaussian_kernel_sigma = atof(get_command_line_param_val_default_val(argc, argv, "-gaussian_kernel_sigma", "2"));
     static const int gaussian_kernel_dim = 1+2*(int)(gaussian_kernel_sigma*1.5); // To get about a 99% confidence interval
-    static const double intensity_sigma = atof(get_command_line_param_val_default_val(argc, argv, "-intensity_sigma", "5"));
+    static const double intensity_sigma = atof(get_command_line_param_val_default_val(argc, argv, "-intensity_sigma", "50"));
     char* input_image_name = argv[1];
     char* output_image_name = argv[2];
     
@@ -102,11 +102,11 @@ int main(int argc, char* argv[]) {
         }
     }
     
-    auto end_time = std::chrono::high_resolution_clock::now();
-    
     J.write( output_image_name );
     
-    cout << "Total Run Time: " << (std::chrono::duration_cast<std::chrono::nanoseconds>(end_time-start_time).count()) / (pow(10.0,9.0)) << " seconds." << endl;
+    auto end_time = std::chrono::high_resolution_clock::now();
+    
+    cout << "Total Run Time: " << (std::chrono::duration_cast<std::chrono::nanoseconds>(end_time-start_time).count()) / (pow(10.0,9.0)) << " seconds." << endl << endl;
     
     return 0;
 }
